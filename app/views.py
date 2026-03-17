@@ -73,7 +73,12 @@ def get_image(filename):
     """Return a specific image from the uploads folder."""
     return send_from_directory(os.path.join(os.getcwd(), app.config['UPLOAD_FOLDER']), filename)
 
-
+@app.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.', 'success')
+    return redirect(url_for('home'))
 ###
 # Helper Functions
 ###
